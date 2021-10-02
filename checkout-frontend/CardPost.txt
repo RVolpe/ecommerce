@@ -1,0 +1,22 @@
+"http://localhost:8085/v1/checkout/"
+
+POST: http://localhost:8085/v1/checkout/
+
+{
+	"firstName": "Rodrigo",
+	"lastName": "Volpe",
+	"username":"RVolpe",
+	"email": "kild_ro@hotmail.com",
+	"address": "R. Emilia Sampaio, 30",
+	"complement": "apto 401",
+	"country": "Brasil",
+	"state": "RJ",
+	"cep": "20560-100",
+	"saveAddress": "true",
+	"saveInfo": "true",
+	"paymentMethod": "CREDIT",
+	"cardName": "RODRIGO V P SILVA",
+	"cardNumber": "99966699483",
+	"cardDate": "05/34",
+	"cardCvv": "345"
+}

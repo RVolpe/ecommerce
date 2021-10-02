@@ -1,0 +1,76 @@
+plugins {
+	id "com.github.davidmc24.gradle.plugin.avro" version "1.2.1"
+	id 'org.springframework.boot' version '2.5.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.ecommerce'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		url 'https://packages.confluent.io/maven/'
+	}
+}
+
+ext {
+	set('springCloudVersion', "2020.0.4")
+	//set('springCloudVersion', "Hoxton.SR6")
+	set('springBootVersion', "2.4.5")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+	implementation 'org.springframework.data:spring-data-envers:2.5.4'
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.0.4'
+	implementation 'org.springframework.cloud:spring-cloud-stream:3.1.4'
+	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka:3.1.4'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka:3.1.4'
+
+	// Lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+	// PostgreSQL
+	implementation 'org.postgresql:postgresql:42.2.24'
+
+	// Kafka
+	implementation "org.apache.avro:avro:1.10.2"
+	//implementation 'org.apache.kafka:kafka-streams:2.8.0'
+	implementation 'io.confluent:kafka-avro-serializer:6.2.1'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+
+avro {
+	fieldVisibility = "PRIVATE"
+}
+
+generateAvroJava {
+	source 'src/main/resources/avro'
+}
+
+generateTestAvroJava {
+	source 'src/main/resources/avro'
+}
