@@ -4,7 +4,7 @@ E-commerce usando micros serviços em Java Criando uma solução de e-commerce c
 
 Arquitetura
 
-📑 Requisitos Docker Java JDK 14 📝 Instruções Prepare a infraestrutura:
+📑 Requisitos Docker Java JDK 11.2 📝 Instruções Prepare a infraestrutura:
 
 Crie e inicie os containers docker configurados no arquivo docker/docker-compose.yml seguinte comando:
 
